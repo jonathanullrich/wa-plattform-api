@@ -17,7 +17,45 @@ WA.onInit().then(() => {
         currentPopup = WA.ui.openPopup("clockPopup","It's " + time,[]);
     })
 
-    WA.room.onLeaveLayer('clockZone').subscribe(closePopUp)
+    WA.room.onLeaveLayer('clockZone').subscribe(closePopUp);
+
+    WA.chat.sendChatMessage('Hello world', 'Mr Robot');
+
+    fetch('', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({hello: "hello"}),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });;
+
+    WA.chat.onChatMessage((message => {
+        console.log('The user typed a message', message);
+        const data = {
+            data: message
+        }
+        fetch('', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });;
+    }));
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
