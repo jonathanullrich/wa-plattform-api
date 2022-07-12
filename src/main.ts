@@ -21,7 +21,7 @@ WA.onInit().then(() => {
 
     WA.chat.sendChatMessage('Hello world', 'Mr Robot');
 
-    fetch('', {
+    fetch('https://wa-api.pfaffhack.de', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,14 +34,14 @@ WA.onInit().then(() => {
     })
     .catch((error) => {
       console.error('Error:', error);
-    });;
+    });
 
     WA.chat.onChatMessage((message => {
         console.log('The user typed a message', message);
         const data = {
             data: message
         }
-        fetch('', {
+        fetch('https://wa-api.pfaffhack.de', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
